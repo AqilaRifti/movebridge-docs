@@ -6,8 +6,8 @@
   base = "docs"
   # Build command - install deps first, then build
   command = "npm install && npm run build"
-  # Directory that contains the deploy-ready HTML files
-  publish = "docs/build"
+  # Directory that contains the deploy-ready HTML files (relative to base)
+  publish = "build"
 
 [build.environment]
   # Node.js version
