@@ -34,15 +34,15 @@ const movement = new Movement({
 **Before (Manual wallet handling):**
 ```typescript
 // Each wallet has different APIs
-const petra = window.petra;
-await petra.connect();
-const account = await petra.account();
+const razor = window.razor;
+await razor.connect();
+const account = await razor.account();
 ```
 
 **After (MoveBridge):**
 ```typescript
 // Unified API for all wallets
-await movement.wallet.connect('petra');
+await movement.wallet.connect('razor');
 const state = movement.wallet.getState();
 ```
 
@@ -76,7 +76,7 @@ const transaction = await aptos.transaction.build.simple({
     functionArguments: [recipient, amount],
   },
 });
-const signedTx = await petra.signTransaction(transaction);
+const signedTx = await razor.signTransaction(transaction);
 const result = await aptos.transaction.submit.simple({
   transaction,
   senderAuthenticator: signedTx,
@@ -121,7 +121,7 @@ const result = await contract.view('balance', [address], [
 **Before:**
 ```typescript
 try {
-  await petra.connect();
+  await razor.connect();
 } catch (error) {
   // Generic error handling
   console.log(error.message);
@@ -133,7 +133,7 @@ try {
 import { isMovementError } from '@movebridge/core';
 
 try {
-  await movement.wallet.connect('petra');
+  await movement.wallet.connect('razor');
 } catch (error) {
   if (isMovementError(error)) {
     // Typed error handling
@@ -304,7 +304,7 @@ const movement = new Movement({ network: 'testnet' });
 const aptosClient = movement.getAptosClient();
 
 // Use MoveBridge for supported features
-await movement.wallet.connect('petra');
+await movement.wallet.connect('razor');
 const balance = await movement.getAccountBalance(address);
 
 // Use Aptos SDK for advanced features
